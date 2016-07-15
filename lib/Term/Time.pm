@@ -11,6 +11,9 @@ use warnings;
 use version;
 use Carp;
 use English qw/ -no_match_vars /;
+use Path::Tiny;
+use File::Temp qw/tempfile/;
+use JSON::XS qw/decode_json/;
 
 our $VERSION     = version->new('0.0.1');
 our @EXPORT_OK   = qw/ttime/;
@@ -19,12 +22,21 @@ our @EXPORT      = qw/ttime/;
 
 sub ttime {
     my @command = @_;
+    my ($tempfh, $tempfile) = tempfile();
+    my @time = q/time -f '{"real":"%E","user":"%U","sys":"%S","mem":{"unshared":"%D","avgtotal":"%K"},"cpu":{"percent":"%P","seconds":"%S"}}' -o /. $tempfile;
 
-    open my $time, '|-', join ' ', 'time', @command;
+    # close write fh
+    close $tempfh;
+    open my $time, '|-', join ' ', @time, @command;
 
-    print $time, "\n";
+    my $tmp = <$time>;
 
-    return $time;
+    wait;
+    close $time;
+    my $json_text = scalar path($tempfile)->slurp;
+    my $json = decode_json($json_text);
+
+    return $json;
 }
 
 1;
