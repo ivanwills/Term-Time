@@ -27,7 +27,7 @@ sub ttime {
 
     # close write fh
     close $tempfh;
-    open my $time, '|-', join ' ', @time, @command;
+    open my $time, '-|', join ' ', @time, @command;
 
     my $tmp = <$time>;
 
