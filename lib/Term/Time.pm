@@ -15,6 +15,8 @@ use Path::Tiny;
 use File::Temp qw/tempfile/;
 use JSON::XS qw/decode_json/;
 
+use base qw/Exporter/;
+
 our $VERSION     = version->new('0.0.1');
 our @EXPORT_OK   = qw/ttime/;
 our %EXPORT_TAGS = ();
@@ -23,7 +25,7 @@ our @EXPORT      = qw/ttime/;
 sub ttime {
     my @command = @_;
     my ($tempfh, $tempfile) = tempfile();
-    my @time = q/time -f '{"real":"%E","user":"%U","sys":"%S","mem":{"unshared":"%D","avgtotal":"%K","resedent":"%M","shared":"%X"},"cpu":{"percent":"%P","kernel":"%S","user":"%U"}}' -o /. $tempfile;
+    my @time = q/time -f '{"real":"%e","user":"%U","sys":"%S","mem":{"unshared":"%D","avgtotal":"%K","resedent":"%M","shared":"%X"},"cpu":{"percent":"%P","kernel":"%S","user":"%U"}}' -o /. $tempfile;
 
     # close write fh
     close $tempfh;
