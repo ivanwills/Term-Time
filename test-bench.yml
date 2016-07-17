@@ -1,0 +1,5 @@
+---
+test bench file:
+    init: 0
+    command: perl -e '$ENV{A} *= $_ ** 2 for 0 .. 100'
+    destroy: 0
