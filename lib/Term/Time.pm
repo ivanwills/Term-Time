@@ -23,7 +23,7 @@ our @EXPORT      = qw/ttime/;
 sub ttime {
     my @command = @_;
     my ($tempfh, $tempfile) = tempfile();
-    my @time = q/time -f '{"real":"%E","user":"%U","sys":"%S","mem":{"unshared":"%D","avgtotal":"%K"},"cpu":{"percent":"%P","seconds":"%S"}}' -o /. $tempfile;
+    my @time = q/time -f '{"real":"%E","user":"%U","sys":"%S","mem":{"unshared":"%D","avgtotal":"%K","resedent":"%M","shared":"%X"},"cpu":{"percent":"%P","kernel":"%S","user":"%U"}}' -o /. $tempfile;
 
     # close write fh
     close $tempfh;
