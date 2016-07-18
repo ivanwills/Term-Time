@@ -62,6 +62,7 @@ sub main {
 
     # do stuff here
     my $bench_code = LoadFile($option{config});
+    my %full_stats = {};
 
     for my $code (keys %{ $bench_code }) {
         my $max = $bench_code->{max} || $option{max};
@@ -78,12 +79,13 @@ sub main {
             }
         }
 
-        my %stats = ();
+        my $stats = { count => $max };
         for my $stat (@stats) {
-            %stats = add_keys(\%stats, $stat);
+            $stats = add_keys($stats, $stat);
         }
-        print Dump \%stats;
+        $full_stats{$code} = $stats;
     }
+    warn Dump \%full_stats;
 
     return;
 }
