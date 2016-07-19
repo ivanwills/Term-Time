@@ -61,3 +61,5 @@ Debian_CPANTS.txt
 
 # Avoid archives of this distribution
 \bTerm-Time-[\d\.\_]+
+^MYMETA\.json$
+.vtide.yml

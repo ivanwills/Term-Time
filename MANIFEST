@@ -1,6 +1,6 @@
-
 Build.PL
 Changes
+example/bench
 lib/Term/Time.pm
 LICENSE
 MANIFEST
@@ -16,3 +16,4 @@ t/perlcriticrc
 t/pod-coverage.t
 t/pod.t
 t/spelling.t
+test-bench.yml
