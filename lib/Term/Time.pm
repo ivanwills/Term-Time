@@ -47,54 +47,46 @@ __END__
 
 =head1 NAME
 
-Term::Time - <One-line description of module's purpose>
+Term::Time - A library for getting the timings and other statistics for running code
 
 =head1 VERSION
 
 This documentation refers to Term::Time version 0.0.1
 
-
 =head1 SYNOPSIS
 
    use Term::Time;
 
-   # Brief but working code example(s) here showing the most common usage(s)
-   # This section will be as far as many users bother reading, so make it as
-   # educational and exemplary as possible.
-
+   # ttime is exported by default and called with at shell script to execute
+   my $times = ttime('some --shell --program');
+   # $times =
+   #{
+   #    cpu => {
+   #        kernel => '0.44',
+   #        percent => '99%',
+   #        user => '0.07'
+   #    },
+   #    mem => {
+   #        avgtotal => '0',
+   #        resedent => '2460',
+   #        shared => '0',
+   #        unshared => '0'
+   #    },
+   #    real => '0.52',
+   #    sys => '0.44',
+   #    user => '0.07'
+   #}
 
 =head1 DESCRIPTION
 
-A full description of the module and its features.
-
-May include numerous subsections (i.e., =head2, =head3, etc.).
-
+Uses the C<time> command to execute a command and get the running
+statistics for that program.
 
 =head1 SUBROUTINES/METHODS
 
-A separate section listing the public components of the module's interface.
+=head2 C<ttime ( $command )>
 
-These normally consist of either subroutines that may be exported, or methods
-that may be called on objects belonging to the classes that the module
-provides.
-
-Name the section accordingly.
-
-In an object-oriented module, this section should begin with a sentence (of the
-form "An object of this class represents ...") to give the reader a high-level
-context to help them understand the methods that are subsequently described.
-
-
-=head3 C<new ( $search, )>
-
-Param: C<$search> - type (detail) - description
-
-Return: Term::Time -
-
-Description:
-
-=cut
-
+Executes C<$command> are returns the statisics (memory/CPU) for the run.
 
 =head1 DIAGNOSTICS
 
