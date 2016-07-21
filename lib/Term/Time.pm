@@ -86,7 +86,7 @@ statistics for that program.
 
 =head2 C<ttime ( $command )>
 
-Executes C<$command> are returns the statisics (memory/CPU) for the run.
+Executes C<$command> are returns the statistics (memory/CPU) for the run.
 
 =head1 DIAGNOSTICS
 
